@@ -4,73 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_tutorial/src/basics/01_animated_builder.dart';
 import 'package:flutter_tutorial/src/misc/01_hero_animation.dart';
 
-
 const double windowWidth = 480;
 const double windowHeight = 854;
 
-
-class Demo {
-  final String name;
-  final String route;
-  final WidgetBuilder builder;
-
-  const Demo({
-    required this.name,
-    required this.route,
-    required this.builder,
-  });
-}
-
-final basicDemos = [
-  Demo(
-      name: 'AnimatedBuilder',
-      route: AnimatedBuilderDemo.routeName,
-      builder: (context) => const AnimatedBuilderDemo()),
-];
-
-final miscDemos = [
-  Demo(
-      name: 'Hero Animation',
-      route: HeroAnimationDemo.routeName,
-      builder: (context) => const HeroAnimationDemo()),
-];
-
-final router = GoRouter(
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const HomePage(),
-      routes: [
-        for (final demo in basicDemos)
-          GoRoute(
-            path: demo.route,
-            builder: (context, state) => demo.builder(context),
-          ),
-        for (final demo in miscDemos)
-          GoRoute(
-            path: demo.route,
-            builder: (context, state) => demo.builder(context),
-          ),
-      ],
-    ),
-  ],
-);
-
-class FlutterTutorialApp extends StatelessWidget {
-  const FlutterTutorialApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Flutter Tutorial',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
-      routerConfig: router,
-    );
-  }
-}
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -100,6 +36,75 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
+class FlutterTutorialApp extends StatelessWidget {
+  const FlutterTutorialApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'Flutter Tutorial',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      routerConfig: router,
+    );
+  }
+}
+
+
+class Demo {
+  final String name;
+  final String route;
+  final WidgetBuilder builder;
+
+  const Demo({
+    required this.name,
+    required this.route,
+    required this.builder,
+  });
+}
+
+
+final basicDemos = [
+  Demo(
+      name: 'AnimatedBuilder',
+      route: AnimatedBuilderDemo.routeName,
+      builder: (context) => const AnimatedBuilderDemo()),
+];
+
+
+final miscDemos = [
+  Demo(
+      name: 'Hero Animation',
+      route: HeroAnimationDemo.routeName,
+      builder: (context) => const HeroAnimationDemo()),
+];
+
+
+final router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomePage(),
+      routes: [
+        for (final demo in basicDemos)
+          GoRoute(
+            path: demo.route,
+            builder: (context, state) => demo.builder(context),
+          ),
+        for (final demo in miscDemos)
+          GoRoute(
+            path: demo.route,
+            builder: (context, state) => demo.builder(context),
+          ),
+      ],
+    ),
+  ],
+);
+
 
 class DemoTile extends StatelessWidget {
   final Demo demo;
