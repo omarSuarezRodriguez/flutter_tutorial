@@ -8,6 +8,23 @@ const double windowWidth = 480;
 const double windowHeight = 854;
 
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'Flutter Tutorial',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      routerConfig: router,
+    );
+  }
+}
+
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -38,22 +55,26 @@ class HomePage extends StatelessWidget {
 }
 
 
-class FlutterTutorialApp extends StatelessWidget {
-  const FlutterTutorialApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Flutter Tutorial',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
-      routerConfig: router,
-    );
-  }
-}
-
+final router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomePage(),
+      routes: [
+        for (final demo in basicDemos)
+          GoRoute(
+            path: demo.route,
+            builder: (context, state) => demo.builder(context),
+          ),
+        for (final demo in miscDemos)
+          GoRoute(
+            path: demo.route,
+            builder: (context, state) => demo.builder(context),
+          ),
+      ],
+    ),
+  ],
+);
 
 class Demo {
   final String name;
@@ -82,28 +103,6 @@ final miscDemos = [
       route: HeroAnimationDemo.routeName,
       builder: (context) => const HeroAnimationDemo()),
 ];
-
-
-final router = GoRouter(
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const HomePage(),
-      routes: [
-        for (final demo in basicDemos)
-          GoRoute(
-            path: demo.route,
-            builder: (context, state) => demo.builder(context),
-          ),
-        for (final demo in miscDemos)
-          GoRoute(
-            path: demo.route,
-            builder: (context, state) => demo.builder(context),
-          ),
-      ],
-    ),
-  ],
-);
 
 
 class DemoTile extends StatelessWidget {
