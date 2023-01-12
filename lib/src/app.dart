@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:flutter_tutorial/src/basics/01_animated_builder.dart';
+import 'package:flutter_tutorial/src/basics/02_page_route_builder.dart';
+import 'package:flutter_tutorial/src/basics/03_animation_controller.dart';
+import 'package:flutter_tutorial/src/basics/04_tweens.dart';
+import 'package:flutter_tutorial/src/basics/05_animated_container.dart';
+import 'package:flutter_tutorial/src/basics/06_custom_tween.dart';
+import 'package:flutter_tutorial/src/basics/07_tween_sequence.dart';
+import 'package:flutter_tutorial/src/basics/08_fade_transition.dart';
+
 import 'package:flutter_tutorial/src/misc/01_hero_animation.dart';
+
 
 const double windowWidth = 480;
 const double windowHeight = 854;
@@ -23,7 +32,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -53,7 +61,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
 
 final router = GoRouter(
   routes: [
@@ -88,22 +95,65 @@ class Demo {
   });
 }
 
-
 final basicDemos = [
   Demo(
-      name: 'AnimatedBuilder',
+      name: '1. AnimatedBuilder',
       route: AnimatedBuilderDemo.routeName,
       builder: (context) => const AnimatedBuilderDemo()),
-];
 
+  Demo(
+      name: '2. PageRouteBuilder',
+      route: PageRouteBuilderDemo.routeName,
+      builder: (context) => const PageRouteBuilderDemo()),
+
+  Demo(
+      name: '3. Animation Controller',
+      route: AnimationControllerDemo.routeName,
+      builder: (context) => const AnimationControllerDemo()),
+
+  Demo(
+      name: '4. Tweens',
+      route: TweenDemo.routeName,
+      builder: (context) => const TweenDemo()),
+
+  Demo(
+      name: '5. AnimatedContainer',
+      route: AnimatedContainerDemo.routeName,
+      builder: (context) => const AnimatedContainerDemo()),
+
+  Demo(
+      name: '6. Custom Tween',
+      route: CustomTweenDemo.routeName,
+      builder: (context) => const CustomTweenDemo()),
+
+  Demo(
+      name: '7. Tween Sequences',
+      route: TweenSequenceDemo.routeName,
+      builder: (context) => const TweenSequenceDemo()),
+
+  Demo(
+      name: '8. Fade Transition',
+      route: FadeTransitionDemo.routeName,
+      builder: (context) => const FadeTransitionDemo()),
+
+];
 
 final miscDemos = [
   Demo(
-      name: 'Hero Animation',
+      name: '1- Hero Animation',
+      route: HeroAnimationDemo.routeName,
+      builder: (context) => const HeroAnimationDemo()),
+  
+  Demo(
+      name: '2- Hero Animation',
+      route: HeroAnimationDemo.routeName,
+      builder: (context) => const HeroAnimationDemo()),
+
+  Demo(
+      name: '3- Hero Animation',
       route: HeroAnimationDemo.routeName,
       builder: (context) => const HeroAnimationDemo()),
 ];
-
 
 class DemoTile extends StatelessWidget {
   final Demo demo;
